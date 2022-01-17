@@ -1,10 +1,13 @@
-import { IInteraction } from '../../interfaces/IInteraction';
+import { CommandInteraction } from 'discord.js';
 
 export = {
   name: 'ping',
   category: 'Utility',
   description: 'Replies with pong!',
-  run: async (interaction: IInteraction) => {
-    await interaction.reply('Pong!');
+  run: async (interaction: CommandInteraction) => {
+    await interaction.reply({
+      content: 'Pong!',
+      ephemeral: true
+    });
   }
 };

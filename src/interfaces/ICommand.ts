@@ -1,9 +1,8 @@
-import { IClient } from './IClient';
-import { IInteraction } from './IInteraction';
+import { CommandInteraction } from 'discord.js';
 
 export interface ICommand {
   name: string;
   category: string;
   description: string;
-  run(interaction: IInteraction, client?: IClient): Promise<void>;
+  run(interaction: CommandInteraction): Promise<void>;
 }

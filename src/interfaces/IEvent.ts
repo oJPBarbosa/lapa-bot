@@ -1,7 +1,8 @@
-import { IClient } from './IClient';
+import { Collection } from 'discord.js';
+import { ICommand } from './ICommand';
 
 export interface IEvent {
   name: string;
   once?: boolean;
-  execute(client: IClient): void;
+  execute(args: any[], commands?: Collection<string, ICommand>): void;
 }

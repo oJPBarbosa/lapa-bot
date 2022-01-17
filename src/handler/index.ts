@@ -9,13 +9,17 @@ export const handle: Function = async (client: IClient): Promise<void> => {
     const event: IEvent = require(join(process.cwd(), 'src/events', file));
 
     if (event.once) {
-      client.once(event.name, (): void => event.execute(client));
+      client.once(event.name, (...args: [any]) =>
+        event.execute(...args, client.commands)
+      );
     } else {
-      client.on(event.name, (): void => event.execute(client));
+      client.on(event.name, (...args: [any]) =>
+        event.execute(...args, client.commands)
+      );
     }
   });
 
-  const commands: any[] = [];
+  const commands: ICommand[] = [];
   readdirSync(join(process.cwd(), 'src/commands')).forEach(
     (category: string) => {
       readdirSync(join(process.cwd(), 'src/commands', category)).forEach(
