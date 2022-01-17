@@ -5,26 +5,17 @@ import { IClient } from './../interfaces/IClient';
 import { ICommand } from '../interfaces/ICommand';
 
 export const handle: Function = async (client: IClient): Promise<void> => {
-  readdirSync(join(process.cwd(), 'src/events')).forEach((file: string) => {
-    const event: IEvent = require(join(process.cwd(), 'src/events', file));
-
-    if (event.once) {
-      client.once(event.name, (...args: [any]) => event.execute(...args));
-    } else {
-      client.on(event.name, (...args: [any]) =>
-        event.execute(...args, client.commands)
-      );
-    }
-  });
+  const dir: string = process.env.NODE_ENV === 'production' ? 'build' : 'src';
 
   const commands: ICommand[] = [];
-  readdirSync(join(process.cwd(), 'src/commands')).forEach(
+  readdirSync(join(process.cwd(), dir, 'commands')).forEach(
     (category: string) => {
-      readdirSync(join(process.cwd(), 'src/commands', category)).forEach(
+      readdirSync(join(process.cwd(), dir, 'commands', category)).forEach(
         (file: string) => {
           const command: ICommand = require(join(
             process.cwd(),
-            'src/commands',
+            dir,
+            'commands',
             category,
             file
           ));
@@ -36,7 +27,17 @@ export const handle: Function = async (client: IClient): Promise<void> => {
     }
   );
 
-  client.once('ready', async (): Promise<void> => {
-    await client.application.commands.set(commands);
+  readdirSync(join(process.cwd(), dir, 'events')).forEach((file: string) => {
+    const event: IEvent = require(join(process.cwd(), dir, 'events', file));
+
+    if (event.once) {
+      client.once(event.name, (...args: [any]) =>
+        event.execute(...args, commands)
+      );
+    } else {
+      client.on(event.name, (...args: [any]) =>
+        event.execute(...args, client.commands)
+      );
+    }
   });
 };
