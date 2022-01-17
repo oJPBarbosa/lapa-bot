@@ -2,8 +2,7 @@ import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
 
 export = {
   name: 'ping',
-  category: 'Utility',
-  description: 'Replies with pong!',
+  description: 'Ping? 🏓 Pong!',
   run: async (interaction: CommandInteraction): Promise<void> => {
     const message: Message = await interaction.channel.send('.');
     message.delete();
