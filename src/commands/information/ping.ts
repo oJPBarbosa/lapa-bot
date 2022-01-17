@@ -15,7 +15,7 @@ export = {
           'ms`'
       )
       .setFooter({
-        text: 'By ' + interaction.user.tag,
+        text: 'Requested by ' + interaction.user.tag,
         iconURL: interaction.user.displayAvatarURL()
       })
       .setTimestamp()
