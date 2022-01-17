@@ -15,7 +15,7 @@ export = {
       }
 
       try {
-        command.run(interaction);
+        command.execute(interaction);
       } catch (err) {
         interaction.followUp({ content: err.message });
       }

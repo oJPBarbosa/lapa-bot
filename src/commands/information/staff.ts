@@ -1,9 +1,11 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, MessageEmbed } from 'discord.js';
 
 export = {
-  name: 'staff',
-  description: '👔 Conheça os responsáveis pelo Lapa Bot.',
-  run: async (interaction: CommandInteraction): Promise<void> => {
+  data: new SlashCommandBuilder()
+    .setName('staff')
+    .setDescription('👔 Conheça os responsáveis pelo Lapa.'),
+  async execute(interaction: CommandInteraction): Promise<void> {
     const staff: MessageEmbed = new MessageEmbed()
       .setTitle('👔 O staff')
       .addField('Developer', '<@547861798846464004>', true)

@@ -7,7 +7,7 @@ import { ICommand } from '../interfaces/ICommand';
 export const handle: Function = async (client: IClient): Promise<void> => {
   const dir: string = process.env.NODE_ENV === 'production' ? 'build' : 'src';
 
-  const commands: ICommand[] = [];
+  const commands: any[] = [];
   readdirSync(join(process.cwd(), dir, 'commands')).forEach(
     (category: string) => {
       readdirSync(join(process.cwd(), dir, 'commands', category)).forEach(
@@ -20,8 +20,8 @@ export const handle: Function = async (client: IClient): Promise<void> => {
             file
           ));
 
-          client.commands.set(command.name, command);
-          commands.push(command);
+          client.commands.set(command.data.name, command);
+          commands.push(command.data.toJSON());
         }
       );
     }

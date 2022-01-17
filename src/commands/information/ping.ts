@@ -1,9 +1,11 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
 
 export = {
-  name: 'ping',
-  description: 'Ping? 🏓 Pong!',
-  run: async (interaction: CommandInteraction): Promise<void> => {
+  data: new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Ping? 🏓 Pong!'),
+  async execute(interaction: CommandInteraction): Promise<void> {
     const message: Message = await interaction.channel.send('.');
     message.delete();
 
