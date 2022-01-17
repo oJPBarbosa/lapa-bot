@@ -18,7 +18,7 @@ export const handle: Function = async (client: IClient): Promise<void> => {
             'commands',
             category,
             file
-          ));
+          )).default;
 
           client.commands.set(command.data.name, command);
           commands.push(command.data.toJSON());
