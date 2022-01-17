@@ -9,9 +9,7 @@ export const handle: Function = async (client: IClient): Promise<void> => {
     const event: IEvent = require(join(process.cwd(), 'src/events', file));
 
     if (event.once) {
-      client.once(event.name, (...args: [any]) =>
-        event.execute(...args, client.commands)
-      );
+      client.once(event.name, (...args: [any]) => event.execute(...args));
     } else {
       client.on(event.name, (...args: [any]) =>
         event.execute(...args, client.commands)
