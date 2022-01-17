@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, MessageEmbed } from 'discord.js';
 
-export = {
+export default {
   data: new SlashCommandBuilder()
     .setName('staff')
     .setDescription('👔 Conheça os responsáveis pelo Lapa.'),

@@ -4,7 +4,7 @@ import { readdirSync } from 'fs';
 import { join } from 'path';
 import { ICommand } from '../../interfaces/ICommand';
 
-export = {
+export default {
   data: new SlashCommandBuilder()
     .setName('help')
     .setDescription('Precisando de uma ajudinha, step bro? 🙋'),
@@ -22,13 +22,12 @@ export = {
               'commands',
               category,
               file
-            ));
+            )).default;
 
             if (command.data.name != 'help') {
               commands.push({
                 name: '`' + command.data.name + '`',
-                value: command.data.description,
-                inline: true
+                value: command.data.description
               });
             }
           }

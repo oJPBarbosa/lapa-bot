@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
 
-export = {
+export default {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Ping? 🏓 Pong!'),
