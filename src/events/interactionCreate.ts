@@ -1,10 +1,16 @@
-import { Collection, CommandInteraction } from 'discord.js';
-import { ICommand } from './../interfaces/ICommand';
+import {
+  ButtonInteraction,
+  Collection,
+  CommandInteraction,
+  MessageEmbed
+} from 'discord.js';
+import { ICommand } from '../interfaces/ICommand';
+import { buttonHandler as shrekHandler } from '../utils/shrek';
 
 export = {
   name: 'interactionCreate',
   async execute(
-    interaction: CommandInteraction,
+    interaction: CommandInteraction | ButtonInteraction,
     commands: Collection<string, ICommand>
   ) {
     if (interaction.isCommand()) {
@@ -18,6 +24,29 @@ export = {
         command.execute(interaction);
       } catch (err) {
         interaction.followUp({ content: err.message });
+      }
+    }
+
+    if (interaction.isButton()) {
+      const message: any = interaction.message;
+
+      if (message.interaction.user.id === interaction.user.id) {
+        message.delete();
+
+        if (interaction.customId.startsWith('shrek')) {
+          shrekHandler(interaction);
+        }
+      } else {
+        const unauthorized: MessageEmbed = new MessageEmbed()
+          .setTitle('🚫 Você não tem permissão para realizar essa ação!')
+          .setFooter({
+            text: 'Requested by ' + interaction.user.tag,
+            iconURL: interaction.user.displayAvatarURL()
+          })
+          .setTimestamp()
+          .setColor('#dd2e44');
+
+        interaction.reply({ embeds: [unauthorized], ephemeral: true });
       }
     }
   }
