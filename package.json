@@ -1,5 +1,8 @@
 {
   "name": "lapa-bot",
+  "version": "2.0.0",
+  "author": "João Pedro Ferreira Barbosa",
+  "license": "MIT",
   "engines": {
     "node": "17.x"
   },
