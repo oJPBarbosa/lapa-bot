@@ -7,7 +7,7 @@
   </a>
   <img alt="GitHub" src="https://img.shields.io/github/license/oJPBarbosa/lapa-bot.svg">
   <a href="https://www.codacy.com/gh/oJPBarbosa/lapa-bot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oJPBarbosa/lapa-bot&amp;utm_campaign=Badge_Grade">
-    <img alt="Codacy Badge" src="">
+    <img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/42e934a13c6f4f41ac14f47679c7f354">
   </a>
 </p>
 
