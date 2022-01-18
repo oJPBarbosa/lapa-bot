@@ -5,7 +5,7 @@ import { Client, Collection, Intents } from 'discord.js';
 import { handle } from './handler';
 
 const client: IClient = new Client({
-  intents: Intents.FLAGS.GUILDS
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS]
 });
 
 client.commands = new Collection();
