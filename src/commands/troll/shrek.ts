@@ -30,8 +30,7 @@ export default {
     ),
   async execute(interaction: CommandInteraction): Promise<void> {
     if (interaction.options.get('action')) {
-      const action: string | number | boolean =
-        interaction.options.get('action').value;
+      const action: string = interaction.options.get('action').value as string;
 
       switch (action) {
         case 'restart':
