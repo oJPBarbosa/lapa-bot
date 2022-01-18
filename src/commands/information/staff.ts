@@ -1,5 +1,10 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { CommandInteraction, MessageEmbed } from 'discord.js';
+import {
+  CommandInteraction,
+  MessageActionRow,
+  MessageButton,
+  MessageEmbed
+} from 'discord.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -22,6 +27,13 @@ export default {
       .setTimestamp()
       .setColor('#99caf6');
 
-    await interaction.reply({ embeds: [staff] });
+    const row: MessageActionRow = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setLabel('GitHub')
+        .setURL('https://github.com/oJPBarbosa/lapa-bot')
+        .setStyle('LINK')
+    );
+
+    await interaction.reply({ embeds: [staff], components: [row] });
   }
 };
