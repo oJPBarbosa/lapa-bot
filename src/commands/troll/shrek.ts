@@ -29,9 +29,9 @@ export default {
         .addChoice('parar', 'kill')
     ),
   async execute(interaction: CommandInteraction): Promise<void> {
-    if (interaction.options.get('option')) {
+    if (interaction.options.get('action')) {
       const action: string | number | boolean =
-        interaction.options.get('option').value;
+        interaction.options.get('action').value;
 
       switch (action) {
         case 'restart':
@@ -139,7 +139,7 @@ export const send: Function = (
         return;
       }
 
-      if (lines[i].trim() != '') {
+      if (lines[i].trim() !== '') {
         interaction.channel.send(lines[i]);
       }
 
