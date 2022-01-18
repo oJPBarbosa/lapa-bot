@@ -9,7 +9,7 @@ import {
   MessageButton,
   MessageEmbed
 } from 'discord.js';
-import { description } from '../../utils/shrek';
+import { description, script } from '../../utils/shrek';
 
 let sending: boolean = true;
 let i: number = 0;
@@ -126,10 +126,37 @@ export default {
   }
 };
 
-export const send: Function = (
-  interaction: ButtonInteraction,
-  text: string
+export const buttonInteractionHandler: Function = (
+  interaction: ButtonInteraction
 ): void => {
+  if (interaction.customId === 'shrekProceed') {
+    const starting: MessageEmbed = new MessageEmbed()
+      .setTitle('▶️  Envio iniciado!')
+      .setFooter({
+        text: 'Requested by ' + interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL()
+      })
+      .setTimestamp()
+      .setColor('#3a88c2');
+
+    interaction.reply({ embeds: [starting], ephemeral: true });
+
+    send(interaction, script);
+  } else {
+    const canceling: MessageEmbed = new MessageEmbed()
+      .setTitle('❌  Envio cancelado!')
+      .setFooter({
+        text: 'Requested by ' + interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL()
+      })
+      .setTimestamp()
+      .setColor('#dd2f45');
+
+    interaction.reply({ embeds: [canceling], ephemeral: true });
+  }
+};
+
+const send: Function = (interaction: ButtonInteraction, text: string): void => {
   const lines = text.split('\n');
 
   setInterval(() => {

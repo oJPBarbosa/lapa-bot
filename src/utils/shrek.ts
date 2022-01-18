@@ -1,36 +1,3 @@
-import { ButtonInteraction, MessageEmbed } from 'discord.js';
-import { send } from '../commands/troll/shrek';
-
-export const buttonHandler: Function = (
-  interaction: ButtonInteraction
-): void => {
-  if (interaction.customId === 'shrekProceed') {
-    const starting: MessageEmbed = new MessageEmbed()
-      .setTitle('▶️  Envio iniciado!')
-      .setFooter({
-        text: 'Requested by ' + interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL()
-      })
-      .setTimestamp()
-      .setColor('#3a88c2');
-
-    interaction.reply({ embeds: [starting], ephemeral: true });
-
-    send(interaction, script);
-  } else {
-    const canceling: MessageEmbed = new MessageEmbed()
-      .setTitle('❌  Envio cancelado!')
-      .setFooter({
-        text: 'Requested by ' + interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL()
-      })
-      .setTimestamp()
-      .setColor('#dd2f45');
-
-    interaction.reply({ embeds: [canceling], ephemeral: true });
-  }
-};
-
 export const description: string =
   'Cerca de **1.800** mensagens serão enviadas no canal de texto atual.' +
   '\n\n' +
@@ -46,7 +13,7 @@ export const description: string =
   '\n\n' +
   '**Deseja prosseguir?**';
 
-const script: string = `Era uma vez, num reino
+export const script: string = `Era uma vez, num reino
 muito, muito longe,
 o rei e a rainha foram
 abençoados com uma linda bebé.

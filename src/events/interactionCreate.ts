@@ -5,7 +5,7 @@ import {
   MessageEmbed
 } from 'discord.js';
 import { CommandT } from '../interfaces/Command';
-import { buttonHandler as shrekHandler } from '../utils/shrek';
+import { buttonInteractionHandler as shrekButtonInteractionHandler } from '../commands/troll/shrek';
 
 export = {
   name: 'interactionCreate',
@@ -34,7 +34,7 @@ export = {
         message.delete();
 
         if (interaction.customId.startsWith('shrek')) {
-          shrekHandler(interaction);
+          shrekButtonInteractionHandler(interaction);
         }
       } else {
         const unauthorized: MessageEmbed = new MessageEmbed()
