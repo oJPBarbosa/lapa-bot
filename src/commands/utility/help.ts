@@ -24,7 +24,7 @@ export default {
               file
             )).default;
 
-            if (command.data.name != 'help') {
+            if (command.data.name !== 'help' || category !== 'roles') {
               commands.push({
                 name: '`' + command.data.name + '`',
                 value: command.data.description
