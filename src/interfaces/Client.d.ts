@@ -1,6 +1,6 @@
 import { Client, Collection } from 'discord.js';
-import { ICommand } from './ICommand';
+import { CommandT } from './Command';
 
 export interface IClient extends Client {
-  commands?: Collection<string, ICommand>;
+  commands?: Collection<string, CommandT>;
 }

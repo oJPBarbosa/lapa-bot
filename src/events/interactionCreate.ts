@@ -4,17 +4,17 @@ import {
   CommandInteraction,
   MessageEmbed
 } from 'discord.js';
-import { ICommand } from '../interfaces/ICommand';
+import { CommandT } from '../interfaces/Command';
 import { buttonHandler as shrekHandler } from '../utils/shrek';
 
 export = {
   name: 'interactionCreate',
   async execute(
     interaction: CommandInteraction | ButtonInteraction,
-    commands: Collection<string, ICommand>
+    commands: Collection<string, CommandT>
   ) {
     if (interaction.isCommand()) {
-      const command: ICommand = commands.get(interaction.commandName);
+      const command: CommandT = commands.get(interaction.commandName);
 
       if (!command) {
         return interaction.followUp({ content: 'error' });

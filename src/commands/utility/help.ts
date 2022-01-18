@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction, EmbedFieldData, MessageEmbed } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import { ICommand } from '../../interfaces/ICommand';
+import { CommandT } from '../../interfaces/Command';
 
 export default {
   data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ export default {
       (category: string) => {
         readdirSync(join(process.cwd(), dir, 'commands', category)).forEach(
           (file: string) => {
-            const command: ICommand = require(join(
+            const command: CommandT = require(join(
               process.cwd(),
               dir,
               'commands',

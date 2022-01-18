@@ -1,4 +1,4 @@
-import { IClient } from './../interfaces/IClient';
+import { IClient } from '../interfaces/Client';
 
 export = {
   name: 'ready',

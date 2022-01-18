@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import { IClient } from './interfaces/IClient';
+import { IClient } from './interfaces/Client';
 import { Client, Collection, Intents } from 'discord.js';
 import { handle } from './handler';
 
